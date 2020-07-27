@@ -30,8 +30,8 @@ public class AlgorithmWithArrayList {
                 String[] lineSecondFile = line2.split(",");
                 String SecondId = lineSecondFile[0].trim();
                 String SecondValue = lineSecondFile[1].trim();
-
                 String lineResult = String.format("%-10.10s %-100.100s %-100.100s", FirstId, FirstValue, SecondValue);
+
                 if(FirstId.equals(SecondId)) {
                     String ids = String.format("%-10.10s", FirstId);
                     if(result.lastIndexOf(ids) > 0){

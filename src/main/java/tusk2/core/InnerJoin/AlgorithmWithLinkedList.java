@@ -23,6 +23,8 @@ public class AlgorithmWithLinkedList {
     public StringBuilder getInnerJoinLinkedList(){
         String firstLine = String.format("%-10.10s %-100.100s %-100.100s", "ID", "A.VALUE", "B.VALUE");
         StringBuilder result = new StringBuilder(firstLine+"\n");
+        list1.sort(String::compareTo);
+        list2.sort(String::compareTo);
         for (String line1: list1) {
             String[] lineFirstFile = line1.split(",");
             String FirstId = lineFirstFile[0].trim();
@@ -32,8 +34,8 @@ public class AlgorithmWithLinkedList {
                 String[] lineSecondFile = line2.split(",");
                 String SecondId = lineSecondFile[0].trim();
                 String SecondValue = lineSecondFile[1].trim();
-
                 String lineResult = String.format("%-10.10s %-100.100s %-100.100s", FirstId, FirstValue, SecondValue);
+
                 if(FirstId.equals(SecondId)) {
                     String ids = String.format("%-10.10s", FirstId);
                     if(result.lastIndexOf(ids) > 0){

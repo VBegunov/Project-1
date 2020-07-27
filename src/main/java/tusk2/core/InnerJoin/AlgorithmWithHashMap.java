@@ -1,5 +1,6 @@
 package tusk2.core.InnerJoin;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,17 +26,17 @@ public class AlgorithmWithHashMap {
 
             for (String line1: list1) {
                 String[] lineFirstFile = line1.split(",");
-                String FirstId = lineFirstFile[0].trim();
-                String FirstValue = lineFirstFile[1].trim();
+                String firstId = lineFirstFile[0].trim();
+                String firstValue = lineFirstFile[1].trim();
 
                 for (String line2: list2){
                     String[] lineSecondFile = line2.split(",");
-                    String SecondId = lineSecondFile[0].trim();
-                    String SecondValue = lineSecondFile[1].trim();
+                    String secondId = lineSecondFile[0].trim();
+                    String secondValue = lineSecondFile[1].trim();
 
-                    String lineResult = String.format("%-10.10s %-100.100s %-100.100s", FirstId, FirstValue, SecondValue);
-                    if(FirstId.equals(SecondId)) {
-                        String ids = String.format("%-10.10s", FirstId);
+                    String lineResult = String.format("%-10.10s %-100.100s %-100.100s", firstId, firstValue, secondValue);
+                    if(firstId.equals(secondId)) {
+                        String ids = String.format("%-10.10s", firstId);
                         if(result.lastIndexOf(ids) > 0){
                             result.insert(result.lastIndexOf(ids)+212, "\n" + lineResult);
                         } else{
