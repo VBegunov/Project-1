@@ -3,6 +3,7 @@ package tusk1.model;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Department {
     private String name;
@@ -12,7 +13,6 @@ public class Department {
         this.name = name;
         this.employees = new HashSet<>();
     }
-
 
     public String getName() {
         return name;
@@ -52,18 +52,13 @@ public class Department {
         combinationOfEmployeesTransfer.remove((HashSet<Employee>) employees);
         return combinationOfEmployeesTransfer;
     }
-
-
-    //расчитывает все возможные комбинации для перевода в отделе
+//    расчитывает все возможные комбинации для перевода в отделе
     private Set<HashSet<Employee>> combinations = new HashSet<>(); //промежуточный лист по комбинациям
     private void transferEmployee(Set<HashSet<Employee>> combinationOfEmployeesTransfer, int sizeDepartment) {
-        if (sizeDepartment == 1) {
-            return;
-        } else {
-            for (HashSet<Employee> department : combinationOfEmployeesTransfer) {
-                if (department.size() == sizeDepartment ) {
+        if (sizeDepartment > 1) {
+            for (HashSet<Employee> employeesTransfer : combinationOfEmployeesTransfer.stream().filter(s -> s.size() == sizeDepartment).collect(Collectors.toSet())) {
                     for (Employee employee : employees) {
-                        HashSet<Employee> combination = new HashSet<>(department);
+                        HashSet<Employee> combination = new HashSet<>(employeesTransfer);
 
                         //если в комбинации нет такого сотрудника то возвращаюсь
                         if (!combination.contains(employee)) continue;
@@ -74,7 +69,6 @@ public class Department {
                             combinations.add(combination);
                         }
                     }
-                }
             }
             combinationOfEmployeesTransfer.addAll(combinations);
             combinations.clear();
