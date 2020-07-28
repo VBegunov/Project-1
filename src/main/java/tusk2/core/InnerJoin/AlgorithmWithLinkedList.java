@@ -1,46 +1,72 @@
 package tusk2.core.InnerJoin;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
+import tusk2.model.InnerJoinLine;
+import tusk2.model.Line;
 
-public class AlgorithmWithLinkedList {
-    private List<String> list1 = new LinkedList<>();
-    private List<String> list2 = new LinkedList<>();
+import java.util.*;
 
-    public AlgorithmWithLinkedList(ArrayList<String> list1, ArrayList<String> list2) {
+public class AlgorithmWithLinkedList implements Comparator<Line> {
+    private List<Line> list1 = new LinkedList<>();
+    private List<Line> list2 = new LinkedList<>();
+
+    public AlgorithmWithLinkedList(List<Line> list1, List<Line> list2) {
+        list1.sort(this);
+        list2.sort(this);
         this.list1.addAll(list1);
         this.list2.addAll(list2);
-        this.list1.sort(Comparator.comparing(s0 -> s0.substring(0, s0.indexOf(",")).trim()));
-        this.list2.sort(Comparator.comparing(s0 -> s0.substring(0, s0.indexOf(",")).trim()));
     }
 
     public StringBuilder getInnerJoin() {
-        String firstLine = String.format("%-10.10s %-100.100s %-100.100s", "ID", "A.VALUE", "B.VALUE");
-        StringBuilder result = new StringBuilder(firstLine + "\n");
-        for (String line1 : list1) {
-            String[] lineFirstFile = line1.split(",");
-            String firstId = lineFirstFile[0].trim();
-            String firstValue = lineFirstFile[1].trim();
+        StringBuilder result = new StringBuilder(String.format("%-10.10s %-100.100s %-100.100s\n", "ID", "A.VALUE", "B.VALUE"));
+        for (InnerJoinLine line : innerJoin()) {
+            result.append(line.toString());
+        }
+        return result;
+    }
 
-            for (String line2 : list2) {
-                String[] lineSecondFile = line2.split(",");
-                String secondId = lineSecondFile[0].trim();
-                String secondValue = lineSecondFile[1].trim();
+    private List<InnerJoinLine> innerJoin() {
+        List<InnerJoinLine> result = new ArrayList<>();
+        Iterator<Line> iterator1 = list1.listIterator();
+        Iterator<Line> iterator2 = list2.listIterator();
+        Line line1 = iterator1.next();
+        Line line2 = iterator2.next();
 
-                if (firstId.equals(secondId)) {
-                    String lineResult = String.format("%-10.10s %-100.100s %-100.100s", firstId, firstValue, secondValue);
-                    String ids = String.format("%-10.10s", firstId);
-
-                    if (result.lastIndexOf(ids) > 0) {
-                        result.insert(result.lastIndexOf(ids) + 212, "\n" + lineResult);
+        while (true) {
+            int compare = line1.getId().compareTo(line2.getId());
+            if (compare < 0) {
+                if (iterator1.hasNext()) {
+                    line1 = iterator1.next();
+                } else {
+                    break;
+                }
+            } else if (compare > 0) {
+                if (iterator2.hasNext()) {
+                    line2 = iterator2.next();
+                } else {
+                    break;
+                }
+            } else {
+                result.add(new InnerJoinLine(line1.getId(), line1.getValue(), line2.getValue()));
+                while (iterator2.hasNext()) {
+                    line2 = iterator2.next();
+                    if (line1.getId().equals(line2.getId())) {
+                        result.add(new InnerJoinLine(line1.getId(), line1.getValue(), line2.getValue()));
                     } else {
-                        result.append(lineResult).append("\n");
+                        iterator2 = list2.listIterator();
+                        line2 = iterator2.next();
+                        line1 = iterator1.next();
+                        break;
                     }
                 }
             }
         }
         return result;
     }
+
+
+    @Override
+    public int compare(Line a, Line b) {
+        return a.getId().compareTo(b.getId());
+    }
+
 }

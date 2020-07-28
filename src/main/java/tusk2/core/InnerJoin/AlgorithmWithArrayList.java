@@ -1,35 +1,44 @@
 package tusk2.core.InnerJoin;
 
+import tusk2.model.InnerJoinLine;
+import tusk2.model.Line;
+
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
-public class AlgorithmWithArrayList {
-    private ArrayList<String> list1 = new ArrayList<>();
-    private ArrayList<String> list2 = new ArrayList<>();
-    private static StringBuilder getInnerJoin = new StringBuilder(String.format("%-10.10s %-100.100s %-100.100s\n", "ID", "A.VALUE", "B.VALUE"));
+public class AlgorithmWithArrayList implements Comparator<InnerJoinLine> {
+    private List<Line> list1 = new ArrayList<>();
+    private List<Line> list2 = new ArrayList<>();
 
-    public AlgorithmWithArrayList(ArrayList<String> list1,ArrayList<String> list2) {
+    public AlgorithmWithArrayList(List<Line> list1,List<Line> list2) {
         this.list1.addAll(list1);
         this.list2.addAll(list2);
     }
 
     public StringBuilder getInnerJoin() {
-        this.list1.sort(Comparator.comparing(s0 -> s0.substring(0, s0.indexOf(",")).trim()));
-        this.innerJoinLinkedList(0);
-        return getInnerJoin;
+        StringBuilder result = new StringBuilder(String.format("%-10.10s %-100.100s %-100.100s\n", "ID", "A.VALUE", "B.VALUE"));
+        for(InnerJoinLine line: innerJoin()){
+            result.append(line.toString());
+        }
+        return result;
     }
 
-    private void innerJoinLinkedList(int index) {
-        if (index == list1.size()) return;
-        String id1 = list1.get(index).substring(0, list1.get(index).indexOf(",")).trim();
-        for (String line2 : list2) {
-            String id2 = line2.substring(0, line2.indexOf(",")).trim();
-            if (id1.equals(id2)) {
-                String value1 = list1.get(index).substring(list1.get(index).indexOf(",")+1);
-                String value2 = line2.substring(line2.indexOf(",")+1);
-                getInnerJoin.append(String.format("%-10.10s %-100.100s %-100.100s\n", id1, value1, value2));
+    private List<InnerJoinLine> innerJoin() {
+        List<InnerJoinLine> result = new ArrayList<>();
+        for (Line lineLeft: list1) {
+            for (Line lineRight: list2) {
+                if (lineLeft.getId().equals(lineRight.getId())) {
+                    result.add(new InnerJoinLine(lineLeft.getId(), lineLeft.getValue(), lineRight.getValue()));
+                }
             }
         }
-        innerJoinLinkedList(index+1);
+        result.sort(this);
+        return result;
+    }
+
+    @Override
+    public int compare(InnerJoinLine a, InnerJoinLine b) {
+        return a.getId().compareTo(b.getId());
     }
 }
