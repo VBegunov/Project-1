@@ -19,7 +19,6 @@ public class AlgorithmWithHashMap {
 
     public StringBuilder getInnerJoinV1() {
         StringBuilder result = new StringBuilder(String.format("%-10.10s %-100.100s %-100.100s", "ID", "A.VALUE", "B.VALUE") + "\n");
-
         ArrayList<String> keys1 = map1.keySet().iterator().next();
         ArrayList<String> keys2 = map2.keySet().iterator().next();
         ArrayList<String> values1 = map1.values().iterator().next();

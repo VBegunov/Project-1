@@ -19,8 +19,8 @@ public class AlgorithmWithLinkedList {
     public AlgorithmWithLinkedList(ArrayList<String> list1, ArrayList<String> list2) {
         this.list1.addAll(list1);
         this.list2.addAll(list2);
-        this.list1.sort(Comparator.comparing(s0 -> s0.substring(0, s0.indexOf(","))));
-        this.list2.sort(Comparator.comparing(s0 -> s0.substring(0, s0.indexOf(","))));
+        this.list1.sort(Comparator.comparing(s0 -> s0.substring(0, s0.indexOf(",")).trim()));
+        this.list2.sort(Comparator.comparing(s0 -> s0.substring(0, s0.indexOf(",")).trim()));
     }
 
     public StringBuilder getInnerJoin() {

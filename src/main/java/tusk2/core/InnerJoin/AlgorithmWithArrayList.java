@@ -22,14 +22,14 @@ public class AlgorithmWithArrayList {
     }
 
     public StringBuilder getInnerJoin() {
-        this.list1.sort(Comparator.comparing(s0 -> s0.substring(0, s0.indexOf(","))));
+        this.list1.sort(Comparator.comparing(s0 -> s0.substring(0, s0.indexOf(",")).trim()));
         this.innerJoinLinkedList(0);
         return getInnerJoin;
     }
 
     private void innerJoinLinkedList(int index) {
         if (index == list1.size()) return;
-        String id1 = list1.get(index).substring(0, list1.get(0).indexOf(",")).trim();
+        String id1 = list1.get(index).substring(0, list1.get(index).indexOf(",")).trim();
         for (String line2 : list2) {
             String id2 = line2.substring(0, line2.indexOf(",")).trim();
             if (id1.equals(id2)) {
