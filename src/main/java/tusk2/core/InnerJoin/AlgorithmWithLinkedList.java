@@ -50,6 +50,4 @@ public class AlgorithmWithLinkedList {
         }
         return result;
     }
-
-
 }
