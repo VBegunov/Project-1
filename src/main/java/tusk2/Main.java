@@ -16,8 +16,8 @@ public class Main {
         AlgorithmWithLinkedList algorithmWithLinkedList = new AlgorithmWithLinkedList(FilesReader.getList1(), FilesReader.getList2());
         AlgorithmWithHashMap algorithmWithHashMap = new AlgorithmWithHashMap(FilesReader.getList1(), FilesReader.getList2());
 
-        System.out.println(algorithmWithArrayList.getInnerJoinArrayList());
-        System.out.println(algorithmWithLinkedList.getInnerJoinLinkedList());
+        System.out.println(algorithmWithArrayList.getInnerJoin());
+        System.out.println(algorithmWithLinkedList.getInnerJoin());
         System.out.println(algorithmWithHashMap.getInnerJoinHashMap());
     }
 }

@@ -1,6 +1,7 @@
 package tusk2.core.InnerJoin;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class AlgorithmWithLinkedList {
     public List<String> getList1() {
         return list1;
     }
+
     public List<String> getList2() {
         return list2;
     }
@@ -18,29 +20,29 @@ public class AlgorithmWithLinkedList {
     public AlgorithmWithLinkedList(ArrayList<String> list1, ArrayList<String> list2) {
         this.list1.addAll(list1);
         this.list2.addAll(list2);
+        this.list1.sort(Comparator.comparing(s0 -> s0.substring(0, s0.indexOf(","))));
+        this.list2.sort(Comparator.comparing(s0 -> s0.substring(0, s0.indexOf(","))));
     }
 
-    public StringBuilder getInnerJoinLinkedList(){
+    public StringBuilder getInnerJoin() {
         String firstLine = String.format("%-10.10s %-100.100s %-100.100s", "ID", "A.VALUE", "B.VALUE");
-        StringBuilder result = new StringBuilder(firstLine+"\n");
-        list1.sort(String::compareTo);
-        list2.sort(String::compareTo);
-        for (String line1: list1) {
+        StringBuilder result = new StringBuilder(firstLine + "\n");
+        for (String line1 : list1) {
             String[] lineFirstFile = line1.split(",");
-            String FirstId = lineFirstFile[0].trim();
-            String FirstValue = lineFirstFile[1].trim();
+            String firstId = lineFirstFile[0].trim();
+            String firstValue = lineFirstFile[1].trim();
 
-            for (String line2: list2){
+            for (String line2 : list2) {
                 String[] lineSecondFile = line2.split(",");
-                String SecondId = lineSecondFile[0].trim();
-                String SecondValue = lineSecondFile[1].trim();
-                String lineResult = String.format("%-10.10s %-100.100s %-100.100s", FirstId, FirstValue, SecondValue);
+                String secondId = lineSecondFile[0].trim();
+                String secondValue = lineSecondFile[1].trim();
+                String lineResult = String.format("%-10.10s %-100.100s %-100.100s", firstId, firstValue, secondValue);
 
-                if(FirstId.equals(SecondId)) {
-                    String ids = String.format("%-10.10s", FirstId);
-                    if(result.lastIndexOf(ids) > 0){
-                        result.insert(result.lastIndexOf(ids)+212, "\n" + lineResult);
-                    } else{
+                if (firstId.equals(secondId)) {
+                    String ids = String.format("%-10.10s", firstId);
+                    if (result.lastIndexOf(ids) > 0) {
+                        result.insert(result.lastIndexOf(ids) + 212, "\n" + lineResult);
+                    } else {
                         result.append(lineResult).append("\n");
                     }
                 }
@@ -48,4 +50,6 @@ public class AlgorithmWithLinkedList {
         }
         return result;
     }
+
+
 }

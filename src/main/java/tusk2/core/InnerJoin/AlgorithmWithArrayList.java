@@ -1,6 +1,7 @@
 package tusk2.core.InnerJoin;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class AlgorithmWithArrayList {
     private ArrayList<String> list1 = new ArrayList<>();
@@ -18,30 +19,25 @@ public class AlgorithmWithArrayList {
         this.list2.addAll(list2);
     }
 
-    public StringBuilder getInnerJoinArrayList(){
-        String firstLine = String.format("%-10.10s %-100.100s %-100.100s", "ID", "A.VALUE", "B.VALUE");
-        StringBuilder result = new StringBuilder(firstLine+"\n");
-        for (String line1: list1) {
-            String[] lineFirstFile = line1.split(",");
-            String FirstId = lineFirstFile[0].trim();
-            String FirstValue = lineFirstFile[1].trim();
+    private static StringBuilder getInnerJoin = new StringBuilder(String.format("%-10.10s %-100.100s %-100.100s\n", "ID", "A.VALUE", "B.VALUE"));
 
-            for (String line2: list2){
-                String[] lineSecondFile = line2.split(",");
-                String SecondId = lineSecondFile[0].trim();
-                String SecondValue = lineSecondFile[1].trim();
-                String lineResult = String.format("%-10.10s %-100.100s %-100.100s", FirstId, FirstValue, SecondValue);
+    public StringBuilder getInnerJoin() {
+        this.list1.sort(Comparator.comparing(s0 -> s0.substring(0, s0.indexOf(","))));
+        this.innerJoinLinkedList(0);
+        return getInnerJoin;
+    }
 
-                if(FirstId.equals(SecondId)) {
-                    String ids = String.format("%-10.10s", FirstId);
-                    if(result.lastIndexOf(ids) > 0){
-                        result.insert(result.lastIndexOf(ids)+212, "\n" + lineResult);
-                    } else{
-                        result.append(lineResult).append("\n");
-                    }
-                }
+    private void innerJoinLinkedList(int index) {
+        if (index == list1.size()) return;
+        String id1 = list1.get(index).substring(0, list1.get(0).indexOf(",")).trim();
+        for (String line2 : list2) {
+            String id2 = line2.substring(0, line2.indexOf(",")).trim();
+            if (id1.equals(id2)) {
+                String value1 = list1.get(index).substring(list1.get(index).indexOf(",")+1);
+                String value2 = line2.substring(line2.indexOf(",")+1);
+                getInnerJoin.append(String.format("%-10.10s %-100.100s %-100.100s\n", id1, value1, value2));
             }
         }
-        return result;
+        innerJoinLinkedList(index+1);
     }
 }
