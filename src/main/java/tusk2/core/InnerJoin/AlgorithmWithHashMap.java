@@ -19,19 +19,19 @@ public class AlgorithmWithHashMap {
 
     public StringBuilder getInnerJoinV1() {
         StringBuilder result = new StringBuilder(String.format("%-10.10s %-100.100s %-100.100s", "ID", "A.VALUE", "B.VALUE") + "\n");
-        ArrayList<String> keys1 = map1.keySet().iterator().next();
-        ArrayList<String> keys2 = map2.keySet().iterator().next();
+        ArrayList<String> ids1 = map1.keySet().iterator().next();
+        ArrayList<String> ids2 = map2.keySet().iterator().next();
         ArrayList<String> values1 = map1.values().iterator().next();
         ArrayList<String> values2 = map2.values().iterator().next();
 
-        for (int key1 = 0; key1 < keys1.size(); key1++) {
-            String id1 = keys1.get(key1);
-            if (keys2.contains(id1)) {
-                for (int key2 = 0; key2 < keys2.size(); key2++) {
-                    String id2 = keys2.get(key2);
+        for (int indexId1 = 0; indexId1 < ids1.size(); indexId1++) {
+            String id1 = ids1.get(indexId1);
+            if (ids2.contains(id1)) {
+                for (int indexId2 = 0; indexId2 < ids2.size(); indexId2++) {
+                    String id2 = ids2.get(indexId2);
                     if (id2.equals(id1)) {
-                        String value1 = values1.get(key1);
-                        String value2 = values2.get(key2);
+                        String value1 = values1.get(indexId1);
+                        String value2 = values2.get(indexId2);
                         String line = String.format("%-10.10s %-100.100s %-100.100s", id1, value1, value2);
 
                         if(result.indexOf(id1) > 0){

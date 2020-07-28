@@ -9,13 +9,6 @@ public class AlgorithmWithLinkedList {
     private List<String> list1 = new LinkedList<>();
     private List<String> list2 = new LinkedList<>();
 
-    public List<String> getList1() {
-        return list1;
-    }
-    public List<String> getList2() {
-        return list2;
-    }
-
     public AlgorithmWithLinkedList(ArrayList<String> list1, ArrayList<String> list2) {
         this.list1.addAll(list1);
         this.list2.addAll(list2);

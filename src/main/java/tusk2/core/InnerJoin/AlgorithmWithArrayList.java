@@ -13,14 +13,6 @@ public class AlgorithmWithArrayList {
         this.list2.addAll(list2);
     }
 
-    public ArrayList<String> getList1() {
-        return list1;
-    }
-
-    public ArrayList<String> getList2() {
-        return list2;
-    }
-
     public StringBuilder getInnerJoin() {
         this.list1.sort(Comparator.comparing(s0 -> s0.substring(0, s0.indexOf(",")).trim()));
         this.innerJoinLinkedList(0);
