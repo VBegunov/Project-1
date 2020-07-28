@@ -12,7 +12,6 @@ public class AlgorithmWithLinkedList {
     public List<String> getList1() {
         return list1;
     }
-
     public List<String> getList2() {
         return list2;
     }
@@ -36,10 +35,11 @@ public class AlgorithmWithLinkedList {
                 String[] lineSecondFile = line2.split(",");
                 String secondId = lineSecondFile[0].trim();
                 String secondValue = lineSecondFile[1].trim();
-                String lineResult = String.format("%-10.10s %-100.100s %-100.100s", firstId, firstValue, secondValue);
 
                 if (firstId.equals(secondId)) {
+                    String lineResult = String.format("%-10.10s %-100.100s %-100.100s", firstId, firstValue, secondValue);
                     String ids = String.format("%-10.10s", firstId);
+
                     if (result.lastIndexOf(ids) > 0) {
                         result.insert(result.lastIndexOf(ids) + 212, "\n" + lineResult);
                     } else {

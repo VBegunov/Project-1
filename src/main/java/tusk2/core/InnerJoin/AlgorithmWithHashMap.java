@@ -33,7 +33,13 @@ public class AlgorithmWithHashMap {
                     if (id2.equals(id1)) {
                         String value1 = values1.get(key1);
                         String value2 = values2.get(key2);
-                        result.append(String.format("%-10.10s %-100.100s %-100.100s\n", Integer.parseInt(id1), value1, value2));
+                        String line = String.format("%-10.10s %-100.100s %-100.100s", id1, value1, value2);
+
+                        if(result.indexOf(id1) > 0){
+                            result.insert(result.lastIndexOf(id1) + 212, "\n" + line);
+                        } else {
+                            result.append(line).append("\n");
+                        }
                     }
                 }
             }
