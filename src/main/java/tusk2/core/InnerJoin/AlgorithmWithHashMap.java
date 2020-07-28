@@ -17,7 +17,7 @@ public class AlgorithmWithHashMap {
                 (ArrayList<String>) list2.stream().map(s -> s.substring(s.indexOf(",") + 1).trim()).collect(Collectors.toList()));
     }
 
-    public StringBuilder getInnerJoinV1() {
+    public StringBuilder getInnerJoin() {
         StringBuilder result = new StringBuilder(String.format("%-10.10s %-100.100s %-100.100s", "ID", "A.VALUE", "B.VALUE") + "\n");
         ArrayList<String> ids1 = map1.keySet().iterator().next();
         ArrayList<String> ids2 = map2.keySet().iterator().next();

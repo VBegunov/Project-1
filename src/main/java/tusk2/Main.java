@@ -18,6 +18,6 @@ public class Main {
 
         System.out.println(algorithmWithArrayList.getInnerJoin());
         System.out.println(algorithmWithLinkedList.getInnerJoin());
-        System.out.println(algorithmWithHashMap.getInnerJoinV1());
+        System.out.println(algorithmWithHashMap.getInnerJoin());
     }
 }
