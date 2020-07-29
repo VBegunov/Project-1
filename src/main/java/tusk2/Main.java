@@ -14,10 +14,10 @@ public class Main {
 
         AlgorithmWithArrayList algorithmWithArrayList = new AlgorithmWithArrayList(FilesReader.getList1(), FilesReader.getList2());
         AlgorithmWithLinkedList algorithmWithLinkedList = new AlgorithmWithLinkedList(FilesReader.getList1(), FilesReader.getList2());
-//        AlgorithmWithHashMap algorithmWithHashMap = new AlgorithmWithHashMap(FilesReader.getList1(), FilesReader.getList2());
+        AlgorithmWithHashMap algorithmWithHashMap = new AlgorithmWithHashMap(FilesReader.getList1(), FilesReader.getList2());
 
         System.out.println(algorithmWithArrayList.getInnerJoin());
         System.out.println(algorithmWithLinkedList.getInnerJoin());
-//        System.out.println(algorithmWithHashMap.getInnerJoin());
+        System.out.println(algorithmWithHashMap.getInnerJoin());
     }
 }

@@ -1,44 +1,48 @@
 package tusk2.core.InnerJoin;
 
 
+import tusk2.model.InnerJoinLine;
+import tusk2.model.Line;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class AlgorithmWithHashMap {
-    private Map<ArrayList<String>, ArrayList<String>> map1 = new HashMap<>();
-    private Map<ArrayList<String>, ArrayList<String>> map2 = new HashMap<>();
+    private Map<Integer, ArrayList<String>> map1;
+    private Map<Integer, ArrayList<String>> map2;
 
-    public AlgorithmWithHashMap(ArrayList<String> list1, ArrayList<String> list2) {
-        this.map1.put((ArrayList<String>) list1.stream().map(s -> s.substring(0, s.indexOf(",")).trim()).collect(Collectors.toList()),
-                (ArrayList<String>) list1.stream().map(s -> s.substring(s.indexOf(",") + 1).trim()).collect(Collectors.toList()));
-        this.map2.put((ArrayList<String>) list2.stream().map(s -> s.substring(0, s.indexOf(",")).trim()).collect(Collectors.toList()),
-                (ArrayList<String>) list2.stream().map(s -> s.substring(s.indexOf(",") + 1).trim()).collect(Collectors.toList()));
+    public AlgorithmWithHashMap(List<Line> list1, List<Line> list2) {
+        this.map1 = mapping(list1);
+        this.map2 = mapping(list2);
     }
 
-    public StringBuilder getInnerJoin() {
-        StringBuilder result = new StringBuilder(String.format("%-10.10s %-100.100s %-100.100s", "ID", "A.VALUE", "B.VALUE") + "\n");
-        ArrayList<String> ids1 = map1.keySet().iterator().next();
-        ArrayList<String> ids2 = map2.keySet().iterator().next();
-        ArrayList<String> values1 = map1.values().iterator().next();
-        ArrayList<String> values2 = map2.values().iterator().next();
+    private HashMap<Integer, ArrayList<String>> mapping(List<Line> list1){
+        HashMap<Integer, ArrayList<String>> map = new HashMap<>();
+        for(Line line: list1){
+            ArrayList<String> values = map.getOrDefault(line.getId(), new ArrayList<>());
+            values.add(line.getValue());
+            map.putIfAbsent(line.getId(), values);
+        }
+        return map;
+    }
 
-        for (int indexId1 = 0; indexId1 < ids1.size(); indexId1++) {
-            String id1 = ids1.get(indexId1);
-            if (ids2.contains(id1)) {
-                for (int indexId2 = 0; indexId2 < ids2.size(); indexId2++) {
-                    String id2 = ids2.get(indexId2);
-                    if (id2.equals(id1)) {
-                        String value1 = values1.get(indexId1);
-                        String value2 = values2.get(indexId2);
-                        String line = String.format("%-10.10s %-100.100s %-100.100s", id1, value1, value2);
+    public StringBuilder getInnerJoin(){
+        StringBuilder result = new StringBuilder(String.format("%-10.10s %-100.100s %-100.100s\n", "ID", "A.VALUE", "B.VALUE"));
+        for(InnerJoinLine line: innerJoin()){
+            result.append(line.toString());
+        }
+        return result;
+    }
 
-                        if(result.indexOf(id1) > 0){
-                            result.insert(result.lastIndexOf(id1) + 212, "\n" + line);
-                        } else {
-                            result.append(line).append("\n");
-                        }
+    private List<InnerJoinLine> innerJoin() {
+        List<InnerJoinLine> result = new ArrayList<>();
+        for (Map.Entry<Integer, ArrayList<String>> file1: map1.entrySet()) {
+            if(map2.containsKey(file1.getKey())){
+                for(String lineLeft: file1.getValue()){
+                    for(String lineRight: map2.get(file1.getKey())){
+                        result.add(new InnerJoinLine(file1.getKey(), lineLeft, lineRight));
                     }
                 }
             }

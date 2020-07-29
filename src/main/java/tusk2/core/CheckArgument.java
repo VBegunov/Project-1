@@ -2,8 +2,6 @@ package tusk2.core;
 
 import tusk2.exceptions.InvalidFileReadException;
 
-import java.io.File;
-
 public class CheckArgument {
     public static void checkArg(String[] args) {
         //проверка на аргументы
