@@ -28,7 +28,7 @@ public class AlgorithmWithArrayList implements Comparator<InnerJoinLine> {
         List<InnerJoinLine> result = new ArrayList<>();
         for (Line lineLeft: list1) {
             for (Line lineRight: list2) {
-                if (lineLeft.getId().equals(lineRight.getId())) {
+                if (lineLeft.getId() == lineRight.getId()) {
                     result.add(new InnerJoinLine(lineLeft.getId(), lineLeft.getValue(), lineRight.getValue()));
                 }
             }

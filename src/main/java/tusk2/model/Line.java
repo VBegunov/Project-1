@@ -1,15 +1,15 @@
 package tusk2.model;
 
 public class Line {
-    private Integer id;
+    private int id;
     private String value;
 
-    public Line(Integer id, String value) {
+    public Line(int id, String value) {
         this.id = id;
         this.value = value;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AlgorithmWithHashMap {
     private Map<Integer, ArrayList<String>> map1;
@@ -18,15 +19,18 @@ public class AlgorithmWithHashMap {
         this.map2 = mapping(list2);
     }
 
-    private HashMap<Integer, ArrayList<String>> mapping(List<Line> list1){
-        HashMap<Integer, ArrayList<String>> map = new HashMap<>();
-        for(Line line: list1){
-            ArrayList<String> values = map.getOrDefault(line.getId(), new ArrayList<>());
-            values.add(line.getValue());
-            map.putIfAbsent(line.getId(), values);
-        }
-        return map;
+    private HashMap<Integer, ArrayList<String>> mapping(List<Line> list12){
+        Map<Integer, ArrayList<String>> map =  list12.stream().collect(Collectors
+                .toMap( Line::getId, item -> {ArrayList<String> list = new ArrayList<>(); list.add(item.getValue()); return list;}, (line1, line2) -> {line1.addAll(line2); return line1;}) );
+//        HashMap<Integer, ArrayList<String>> map = new HashMap<>();
+//        for(Line line: list1){
+//            ArrayList<String> values = map.getOrDefault(line.getId(), new ArrayList<>());
+//            values.add(line.getValue());
+//            map.putIfAbsent(line.getId(), values);
+//        }
+        return (HashMap<Integer, ArrayList<String>>) map;
     }
+
 
     public StringBuilder getInnerJoin(){
         StringBuilder result = new StringBuilder(String.format("%-10.10s %-100.100s %-100.100s\n", "ID", "A.VALUE", "B.VALUE"));
