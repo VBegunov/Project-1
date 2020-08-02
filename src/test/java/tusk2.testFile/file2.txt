@@ -7,4 +7,3 @@
 5,C
 5,g
 8 , Aasasasas
-8,awdawdawd
