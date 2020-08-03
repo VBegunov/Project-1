@@ -1,9 +1,3 @@
-2	,A
-2, lol
-7,ewfwef
-4	,B
-3	,E
-5,A
-5,C
-5,g
-8 , Aasasasas
+2,A
+4,B
+3,E

@@ -48,27 +48,21 @@ public class AlgorithmWithLinkedList implements Comparator<Line> {
         List<InnerJoinLine> result = new ArrayList<>();
         Line line1 = iterator1.next();
         Line line2 = iterator2.next();
-        while (iterator1.hasNext()) {
+        while (iterator1.hasNext() && iterator2.hasNext()) {
             int compare = Integer.compare(line1.getId(), line2.getId());
             if (compare < 0) {
-                if (iterator1.hasNext()) {
-                    line1 = iterator1.next();
-                    if (!iterator1.hasNext()) {
-                        result.addAll(getDupInnerJoinLines(line1, line2, iterator2));
-                    }
+                line1 = iterator1.next();
+                if (!iterator1.hasNext()) {
+                    result.addAll(getDupInnerJoinLines(line1, line2, iterator2));
                 }
             } else if (compare > 0) {
-                if (iterator2.hasNext()) {
-                    line2 = iterator2.next();
-                } else break;
+                line2 = iterator2.next();
             } else {
                 result.addAll(getDupInnerJoinLines(line1, line2, iterator2));
                 previousIterator(iterator2, line2);
-                if (iterator1.hasNext()) {
-                    line1 = iterator1.next();
-                    if (!iterator1.hasNext()) {
-                        result.addAll(getDupInnerJoinLines(line1, line2, iterator2));
-                    }
+                line1 = iterator1.next();
+                if (!iterator1.hasNext()) {
+                    result.addAll(getDupInnerJoinLines(line1, line2, iterator2));
                 }
             }
         }

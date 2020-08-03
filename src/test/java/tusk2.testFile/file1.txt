@@ -1,8 +1,5 @@
-5,f
 1	,A
 2	,C
 3	,D
 2	,B
 5	,D
-8,awdawdawdawdawd
-8,aa

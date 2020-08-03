@@ -19,8 +19,8 @@ public class AlgorithmWithHashMap {
         this.map2 = mapping(list2);
     }
 
-    private HashMap<Integer, ArrayList<String>> mapping(List<Line> list12) {
-        Map<Integer, ArrayList<String>> map = list12.stream().collect(Collectors.toMap(
+    private HashMap<Integer, ArrayList<String>> mapping(List<Line> lines) {
+        Map<Integer, ArrayList<String>> map = lines.stream().collect(Collectors.toMap(
                 Line::getId, item -> {
                     ArrayList<String> list = new ArrayList<>();
                     list.add(item.getValue());
