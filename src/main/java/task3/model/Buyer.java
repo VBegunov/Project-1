@@ -20,10 +20,6 @@ public class Buyer extends Thread {
         return countProducts;
     }
 
-    public String getInfo() {
-        return getName() + " совершил " + getCountBuys() + " покупок, и купил - " + getCountProducts() + " товаров";
-    }
-
     @Override
     public void run() {
         while (Stock.getProducts() > 0) {
@@ -33,5 +29,10 @@ public class Buyer extends Thread {
             countBuys++;
             phaser.arriveAndAwaitAdvance();
         }
+    }
+
+    @Override
+    public String toString() {
+        return getName() + " совершил " + getCountBuys() + " покупок, и купил - " + getCountProducts() + " товаров";
     }
 }

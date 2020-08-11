@@ -11,12 +11,14 @@ public class Main {
         int numberOfBuyers = Integer.parseInt(args[0]);
         List<Buyer> buyers = new ArrayList<>();
         Phaser phaser = new Phaser(numberOfBuyers);
+
         for (int i = 0; i < numberOfBuyers; i++) {
             buyers.add(new Buyer(phaser));
         }
+
         for(Buyer buyer: buyers){
             buyer.join();
-            System.out.println(buyer.getInfo());
+            System.out.println(buyer.toString());
         }
     }
 }
