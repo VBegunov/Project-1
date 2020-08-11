@@ -1,10 +1,10 @@
-package tusk2;
+package task2;
 
-import tusk2.core.CheckArgument;
-import tusk2.core.FilesReader;
-import tusk2.core.InnerJoin.AlgorithmWithArrayList;
-import tusk2.core.InnerJoin.AlgorithmWithHashMap;
-import tusk2.core.InnerJoin.AlgorithmWithLinkedList;
+import task2.core.CheckArgument;
+import task2.core.FilesReader;
+import task2.core.InnerJoin.AlgorithmWithArrayList;
+import task2.core.InnerJoin.AlgorithmWithHashMap;
+import task2.core.InnerJoin.AlgorithmWithLinkedList;
 
 public class Main {
     public static void main(String[] args) {

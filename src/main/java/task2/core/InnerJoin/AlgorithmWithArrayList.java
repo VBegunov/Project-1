@@ -1,7 +1,7 @@
-package tusk2.core.InnerJoin;
+package task2.core.InnerJoin;
 
-import tusk2.model.InnerJoinLine;
-import tusk2.model.Line;
+import task2.model.InnerJoinLine;
+import task2.model.Line;
 
 import java.util.ArrayList;
 import java.util.Comparator;

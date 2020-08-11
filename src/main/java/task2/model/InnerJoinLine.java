@@ -1,4 +1,4 @@
-package tusk2.model;
+package task2.model;
 
 public class InnerJoinLine {
     private Integer id;

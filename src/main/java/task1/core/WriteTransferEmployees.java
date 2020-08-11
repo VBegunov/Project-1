@@ -1,6 +1,4 @@
-package tusk1.core;
-
-import tusk1.exceptions.InvalidFileNameWriteException;
+package task1.core;
 
 import java.io.File;
 import java.io.FileWriter;

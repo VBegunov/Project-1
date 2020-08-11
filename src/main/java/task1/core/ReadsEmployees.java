@@ -1,8 +1,8 @@
-package tusk1.core;
+package task1.core;
 
-import tusk1.exceptions.InvalidFileNameReadException;
-import tusk1.model.Department;
-import tusk1.model.Employee;
+import task1.exceptions.InvalidFileNameReadException;
+import task1.model.Department;
+import task1.model.Employee;
 
 import java.io.*;
 import java.math.BigDecimal;

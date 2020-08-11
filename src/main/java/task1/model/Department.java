@@ -1,4 +1,4 @@
-package tusk1.model;
+package task1.model;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

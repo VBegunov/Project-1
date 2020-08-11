@@ -1,7 +1,7 @@
-package tusk1.core;
+package task1.core;
 
-import tusk1.exceptions.InvalidFileNameReadException;
-import tusk1.exceptions.InvalidFileNameWriteException;
+import task1.exceptions.InvalidFileNameReadException;
+import task1.exceptions.InvalidFileNameWriteException;
 
 import java.io.File;
 

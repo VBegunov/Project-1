@@ -1,10 +1,9 @@
-package tusk1;
+package task1;
 
-import tusk1.core.CheckArgument;
-import tusk1.core.ReadsEmployees;
-import tusk1.core.TransferEmployees;
-import tusk1.core.WriteTransferEmployees;
-import tusk1.model.Department;
+import task1.core.CheckArgument;
+import task1.core.ReadsEmployees;
+import task1.core.TransferEmployees;
+import task1.core.WriteTransferEmployees;
 
 public class Solution {
     public static void main(String[] args) {

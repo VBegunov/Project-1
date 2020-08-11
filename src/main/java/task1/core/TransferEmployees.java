@@ -1,7 +1,7 @@
-package tusk1.core;
+package task1.core;
 
-import tusk1.model.Department;
-import tusk1.model.Employee;
+import task1.model.Department;
+import task1.model.Employee;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

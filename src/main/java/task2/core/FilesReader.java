@@ -1,7 +1,7 @@
-package tusk2.core;
+package task2.core;
 
-import tusk2.exceptions.InvalidFileReadException;
-import tusk2.model.Line;
+import task2.exceptions.InvalidFileReadException;
+import task2.model.Line;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

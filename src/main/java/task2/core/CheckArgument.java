@@ -1,6 +1,6 @@
-package tusk2.core;
+package task2.core;
 
-import tusk2.exceptions.InvalidFileReadException;
+import task2.exceptions.InvalidFileReadException;
 
 public class CheckArgument {
     public static void checkArg(String[] args) {

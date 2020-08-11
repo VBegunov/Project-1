@@ -1,6 +1,4 @@
-package tusk1.exceptions;
-
-import org.w3c.dom.ls.LSOutput;
+package task1.exceptions;
 
 public class InvalidFileNameWriteException extends RuntimeException {
     public InvalidFileNameWriteException(String s) {

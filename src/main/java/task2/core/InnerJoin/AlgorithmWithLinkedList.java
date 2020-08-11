@@ -1,7 +1,7 @@
-package tusk2.core.InnerJoin;
+package task2.core.InnerJoin;
 
-import tusk2.model.InnerJoinLine;
-import tusk2.model.Line;
+import task2.model.InnerJoinLine;
+import task2.model.Line;
 
 import java.util.*;
 
@@ -68,6 +68,7 @@ public class AlgorithmWithLinkedList implements Comparator<Line> {
         while (iterator1.hasNext()) {
             line1 = iterator1.next();
             result.addAll(compareLines(line1, line2));
+            if(line1.getId() > line2.getId()) break;
         }
         return result;
     }
@@ -76,6 +77,7 @@ public class AlgorithmWithLinkedList implements Comparator<Line> {
         List<InnerJoinLine> result = new ArrayList<>(compareLines(line1, line2));
         while (iterator2.hasNext()) {
             line2 = iterator2.next();
+            if(line2.getId() > line1.getId()) break;
             result.addAll(compareLines(line1, line2));
         }
         return result;

@@ -1,5 +1,5 @@
-1	,A
-1,sssss
-2,sss
-4,fff
-5,fff
+1,A
+2,B
+3,C
+2,D
+5,F
