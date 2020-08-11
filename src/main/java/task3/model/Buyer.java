@@ -3,8 +3,8 @@ package task3.model;
 import java.util.concurrent.Phaser;
 
 public class Buyer extends Thread {
-    private int countBuy;
-    private int countProduct;
+    private int countBuys;
+    private int countProducts;
     private Phaser phaser;
 
     public Buyer(Phaser phaser) {
@@ -12,16 +12,16 @@ public class Buyer extends Thread {
         this.start();
     }
 
-    private int getCountBuy() {
-        return countBuy;
+    private int getCountBuys() {
+        return countBuys;
     }
 
-    private int getCountProduct() {
-        return countProduct;
+    private int getCountProducts() {
+        return countProducts;
     }
 
     public String getInfo() {
-        return getName() + " совершил " + getCountBuy() + " покупок, и купил - " + getCountProduct() + " товаров";
+        return getName() + " совершил " + getCountBuys() + " покупок, и купил - " + getCountProducts() + " товаров";
     }
 
     @Override
@@ -29,8 +29,8 @@ public class Buyer extends Thread {
         while (Stock.getProducts() > 0) {
             phaser.arriveAndAwaitAdvance();
             int products = (int) (Math.random() * 10) + 1;
-            countProduct += Stock.buyProducts(products);
-            countBuy++;
+            countProducts += Stock.buyProducts(products);
+            countBuys++;
             phaser.arriveAndAwaitAdvance();
         }
     }

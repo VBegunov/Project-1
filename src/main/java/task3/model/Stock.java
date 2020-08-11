@@ -7,14 +7,14 @@ class Stock {
         return products;
     }
 
-    static synchronized int buyProducts(int product){
-        if(product < products){
-            products = products - product;
-            return product;
+    static synchronized int buyProducts(int numberOfProducts){
+        if(numberOfProducts < products){
+            products = products - numberOfProducts;
+            return numberOfProducts;
         } else {
-            product = products;
+            numberOfProducts = products;
             products = 0;
-            return product;
+            return numberOfProducts;
         }
     }
 }
