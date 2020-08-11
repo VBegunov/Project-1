@@ -23,12 +23,14 @@ public class Buyer extends Thread {
     @Override
     public void run() {
         while (Stock.getProducts() > 0) {
-            phaser.arriveAndAwaitAdvance();
             int products = (int) (Math.random() * 10) + 1;
-            countProducts += Stock.buyProducts(products);
-            countBuys++;
+            int chk = Stock.buyProducts(products);
+            countProducts += chk;
+            if(chk>0) countBuys++;
             phaser.arriveAndAwaitAdvance();
         }
+        phaser.arriveAndDeregister();
+        System.out.println(this);
     }
 
     @Override
